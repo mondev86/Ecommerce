@@ -1,79 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexShop - Premium Multi-Vendor Marketplace</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+@extends('layouts.app')
+
+@section('title', 'NexShop - Premium Multi-Vendor Marketplace')
+
+@section('styles')
     <style>
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: #0f1115;
-            color: #ffffff;
-        }
         .hero-banner {
             background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.4), #0f1115), url('/images/ecommerce_hero_banner.png');
             background-size: cover;
             background-position: center;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.5); /* tailwind purple-500 */
-        }
-        .neon-text-glow {
-            text-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
-        }
     </style>
-</head>
-<body class="antialiased overflow-x-hidden">
+@endsection
 
-    <!-- Navbar Trigger Zone & Indicator -->
-    <div class="fixed top-0 left-0 w-full h-8 z-[60] peer group flex justify-center items-start pt-1.5 cursor-ns-resize">
-        <!-- Visual Indicator: A subtle line that implies "pull down" -->
-        <div class="w-16 h-1 bg-white/20 rounded-full group-hover:bg-purple-500 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0)] group-hover:shadow-[0_0_10px_rgba(139,92,246,0.8)]"></div>
-    </div>
-
-    <!-- Navigation (Hidden by default, shown when hovering trigger or the nav itself) -->
-    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-500 -translate-y-full peer-hover:translate-y-0 hover:translate-y-0" style="background: rgba(15, 17, 21, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center shadow-lg shadow-purple-500/30">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <span class="font-bold text-2xl tracking-tight text-white">Nex<span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Shop</span></span>
-                </div>
-                
-                <div class="hidden md:flex space-x-8">
-                    <a href="#" class="text-gray-300 hover:text-white font-medium transition">Discover</a>
-                    <a href="#" class="text-gray-300 hover:text-white font-medium transition">Vendors</a>
-                    <a href="#" class="text-gray-300 hover:text-white font-medium transition">Categories</a>
-                    <a href="#" class="text-gray-300 hover:text-white font-medium transition">Deals</a>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <button class="text-gray-300 hover:text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </button>
-                    <button class="text-gray-300 hover:text-white relative">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        <span class="absolute -top-1 -right-1 bg-purple-600 text-xs text-white font-bold px-1.5 py-0.5 rounded-full">0</span>
-                    </button>
-                    <a href="#" class="hidden md:inline-flex items-center justify-center px-6 py-2 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-white/10 hover:bg-white/20 transition ml-4 backdrop-blur-sm">
-                        Sign In
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
+@section('content')
     <!-- Hero Section -->
     <div class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden hero-banner min-h-[90vh] flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -172,7 +111,6 @@
                 @forelse($products as $product)
                 <div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full">
                     <div class="relative aspect-square bg-gray-800 overflow-hidden">
-                        <!-- Placeholder for Product Image since seeders might not have real media -->
                         <div class="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
                             <span class="text-4xl">🛍️</span>
                         </div>
@@ -188,7 +126,9 @@
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <div class="text-xs text-purple-400 font-medium mb-2">{{ $product->vendor->name ?? 'NexShop Partner' }}</div>
-                        <h3 class="text-lg font-bold mb-2 line-clamp-1 group-hover:text-purple-400 transition-colors" title="{{ $product->name }}">{{ $product->name }}</h3>
+                        <h3 class="text-lg font-bold mb-2 line-clamp-1 group-hover:text-purple-400 transition-colors" title="{{ $product->name }}">
+                            <a href="/products/{{ $product->id }}">{{ $product->name }}</a>
+                        </h3>
                         <p class="text-sm text-gray-400 line-clamp-2 mb-4 flex-grow">{{ $product->description }}</p>
                         
                         <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
@@ -246,24 +186,4 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
-                <span class="font-bold text-xl tracking-tight">NexShop</span>
-            </div>
-            <p class="text-gray-500 text-sm">© 2026 NexShop Marketplace. All rights reserved.</p>
-            <div class="flex gap-4">
-                <a href="#" class="text-gray-500 hover:text-white transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
+@endsection

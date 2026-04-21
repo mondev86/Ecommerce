@@ -84,8 +84,7 @@ class User extends Authenticatable
 
     public function hasRole(string|array $roles): bool
     {
-        $rolesIds = $this->role->whereIn('name', $roles)->pluck('id')->toArray();
-
-        return in_array($this->role_id, $rolesIds);
+        $this->loadMissing('role');
+        return in_array($this->role?->name, (array) $roles);
     }
 }

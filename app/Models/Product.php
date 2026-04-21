@@ -18,16 +18,27 @@ class Product extends Model implements HasMedia
 
     protected $fillable = [
         'vendor_id',
+        'product_category_id',
+        'product_status_id',
         'name',
         'description',
         'price',
         'quantity',
-        'status',
     ];
 
     public function vendor(): BelongsTo
     {
         return $this->belongsTo(Vendor::class);
+    }
+
+    public function productStatus(): BelongsTo
+    {
+        return $this->belongsTo(ProductStatus::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 
     public function reviews(): HasMany
@@ -38,5 +49,15 @@ class Product extends Model implements HasMedia
     public function productVariants(): HasMany
     {
         return $this->hasMany(ProductVariant::class);
+    }
+
+    public function getStatusAttribute(): string
+    {
+        return strtolower($this->productStatus?->name ?? '');
+    }
+
+    public function getVendorNameAttribute(): string
+    {
+        return $this->vendor?->name ?? '';
     }
 }

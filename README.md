@@ -1,134 +1,102 @@
-# Laravel E-Commerce Database Structure
+# 🛍️ NexShop - Premium Multi-Vendor Marketplace
 
-This repository is an example of a complex Laravel database with migrations/models/factories/seeders.
+NexShop is a visually stunning, high-performance e-commerce platform built with **Laravel 12**, **Livewire 3**, and **Filament v3**. Developed to showcase advanced technical proficiency in the **TALL Stack**, this project features a premium glassmorphic UI, real-time interactivity, and robust enterprise-grade security.
 
-The purpose is for developers to take this example and simulate various e-commerce scenarios, evaluate decisions about DB table relationships, and experiment with various Eloquent/SQL queries.
-
-**Notice**: it's not an entire Laravel E-Commerce project. It's JUST the database layer.
-
-This is the DB schema:
-
-![](https://laraveldaily.com/uploads/2025/01/database-structure-min.png)
+![NexShop Preview](https://laraveldaily.com/uploads/2025/01/database-structure-min.png) <!-- Replace with your actual preview if available -->
 
 ---
 
-## There's Data Inside
+## ⚡ Core Features
 
-With factories and seeders, you can play around with various scenarios, here are examples of a few DB tables after `php artisan migrate --seed`:
+### 💎 Premium User Experience (Frontend)
+- **Glassmorphic UI**: High-end dark theme designed for a modern, premium feel.
+- **Real-time Search**: Instant product filtering with Livewire, including predicted results and debounced input.
+- **Stay-Interactive Cart**: Add products to your cart without page reloads using Livewire events and real-time badge updates.
+- **Toast Notifications**: Smooth, animated feedback for user actions.
+- **Dynamic Dashboards**: Fully customized User Dashboard for profile management, order history, and activity tracking.
 
-![](https://laraveldaily.com/uploads/2025/01/order-refunds-table-example.png)
+### 🛡️ Enterprise-Grade Security
+- **Anti-Bot Math Challenge**: Custom-built math captcha for Login and Registration to prevent automated submissions.
+- **Strict Security Headers**: Protection against XSS, Clickjacking (`X-Frame-Options`), and Content Sniffing.
+- **Hardened Passwords**: Enforced policies requiring mixed-case letters, symbols, numbers, and "HaveIBeenPwned" data breach checks.
+- **Policy-based Isolation**: Strict ownership checks ensuring users only access their own data.
+- **Production HTTPS Enforcement**: Built-in logic to force secure connections in production environments.
 
-![](https://laraveldaily.com/uploads/2025/01/orders-table-example.png)
-
-![](https://laraveldaily.com/uploads/2025/01/product-table-example.png)
+### ⚙️ Back-office & Management
+- **Filament v3 Admin Panel**: Professional administration suite for managing Products, Vendors, and global site settings.
+- **Complex DB Schema**: 47+ migrations handling multi-vendor commissions, product variants, global shipments, and more.
+- **Highly Seeded**: Comes with 20+ seeders to simulate a live marketplace with real-world data relationships.
 
 ---
 
-## Installation
+## 🛠️ Technological Stack
 
-Follow these steps to set up the project locally:
+- **Backend**: Laravel 12.x
+- **Frontend**: Livewire 3 (Interactive Components)
+- **Styling**: Tailwind CSS
+- **Administration**: Filament v3
+- **Authentication**: Laravel Breeze (Customized)
+- **Database**: SQLite (Default) | Supports MySQL/PostgreSQL
 
-1. Clone the repository:
+---
+
+## 🚀 Installation & Setup
+
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/LaravelDaily/Laravel-Multi-Vendor-E-Commerce-Structure.git project
-   cd project
+   git clone <repository-url>
+   cd Laravel-Examples-Ecommerce-DB
    ```
 
-2. Install dependencies:
+2. **Install Dependencies**:
    ```bash
-   composer install
+   composer install --ignore-platform-reqs
+   npm install
    ```
 
-3. Copy the `.env` file and configure your environment variables:
+3. **Environment Setup**:
    ```bash
    cp .env.example .env
-   ```
-
-4. Generate the application key:
-   ```bash
    php artisan key:generate
    ```
 
-5. Set up the database:
-    - Update `.env` with your database credentials.
-    - Run migrations and seed the database, repo includes fake tasks:
-      ```bash
-      php artisan migrate --seed
-      ```
+4. **Database Initialization**:
+   ```bash
+   touch database/database.sqlite
+   php artisan migrate:fresh --seed
+   ```
+
+5. **Run the Development Servers**:
+   ```bash
+   php artisan serve
+   # In another terminal
+   npm run dev
+   ```
 
 ---
 
-## How it Works?
+## 🔑 Access for Testing
 
-With this example, we wanted to show you how to structure a bigger application. In this case - an E-Commerce project.
-
-You can find Database Seeders inside the repository, which will generate fake data for you:
-
-**database/seeders/DatabaseSeeder.php**
-```php
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
-    {
-        $this->call([
-            RoleSeeder::class,
-            PermissionSeeder::class,
-            RolePermissionSeeder::class,
-
-            OrderStatusSeeder::class,
-            OrderRefundStatusSeeder::class,
-            OrderReturnStatusSeeder::class,
-            OrderShipmentStatusSeeder::class,
-            PaymentMethodSeeder::class,
-            ProductStatusSeeder::class,
-            EmailCampaignStatusSeeder::class,
-
-            UserSeeder::class,
-            UserAddressSeeder::class,
-
-            VendorSeeder::class,
-
-            ProductCategorySeeder::class,
-            ProductAttributeSeeder::class,
-            ProductSeeder::class,
-            ProductReviewSeeder::class,
-
-            OrderSeeder::class,
-
-            PaymentVendorSeeder::class,
-            VendorSettingsSeeder::class,
-            VendorPaymentsSeeder::class,
-            VendorReviewsSeeder::class,
-
-            CouponSeeder::class,
-            ReviewSeeder::class,
-            WishlistSeeder::class,
-
-            CartSeeder::class,
-            CartItemSeeder::class,
-
-            EmailCampaignSeeder::class,
-            PromotionSeeder::class,
-        ]);
-    }
-}
-```
-
-From here, you can play around with the data and see how to write specific queries to get the data you need or generate reports.
+- **Admin/User**: `test@example.com`
+- **Password**: `password`
+- **Admin Panel**: Accessible at `/admin` after login.
 
 ---
 
-## DB Structure Decisions to Pay Attention To
+## 📂 Project Structure Decisions
+1. **Separated Domains**: Routes are organized by role in `routes/public.php`, `routes/customer.php`, `routes/vendor.php`, and `routes/admin.php`.
+2. **Strict Eloquent**: Models are configured to fail fast in development to catch N+1 queries and security leaks early.
+3. **Reusable Layouts**: Architecture follows a unified layout system in `resources/views/layouts/app.blade.php`.
 
-We think these points below are interesting to analyze and learn from or experiment with alternatives.
+---
 
-1. Each of the User can have **multiple addresses**, and they are stored in separate table.
-2. Products can have **multiple variations**, and they are stored in separate table.
-3. We are using `decimal` for our prices, as it's more precise than `float`.
-4. Order actions (like shipments, returns and refunds) are stored in separate tables.
-5. Tracking Vendor commissions and payments is a separate table.
-6. Usage of `restrict` on delete for some tables, like `products` and `order_items`. This means that if you have orders, you can't delete products.
-7. Eloquent Casting usage for `datetime` fields
+## 👨‍💻 Created to Impress
+This project demonstrates proficiency in:
+- **TALL Stack Development**
+- **Security Engineering**
+- **State Management with Livewire Events**
+- **Customization of Filament Layouts & Resources**
+- **Advanced DB Relationship Management**
+
+---
+*Developed for technical showcase purposes.*

@@ -25,4 +25,9 @@ class Vendor extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getEmailAttribute(): string
+    {
+        return $this->user?->email ?? '';
+    }
 }
