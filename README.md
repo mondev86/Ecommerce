@@ -1,28 +1,3 @@
-# Laravel E-Commerce Database Structure
-
-This repository is an example of a complex Laravel database with migrations/models/factories/seeders.
-
-The purpose is for developers to take this example and simulate various e-commerce scenarios, evaluate decisions about DB table relationships, and experiment with various Eloquent/SQL queries.
-
-**Notice**: it's not an entire Laravel E-Commerce project. It's JUST the database layer.
-
-This is the DB schema:
-
-![](https://laraveldaily.com/uploads/2025/01/database-structure-min.png)
-
----
-
-## There's Data Inside
-
-With factories and seeders, you can play around with various scenarios, here are examples of a few DB tables after `php artisan migrate --seed`:
-
-![](https://laraveldaily.com/uploads/2025/01/order-refunds-table-example.png)
-
-![](https://laraveldaily.com/uploads/2025/01/orders-table-example.png)
-
-![](https://laraveldaily.com/uploads/2025/01/product-table-example.png)
-
----
 
 ## Installation
 
