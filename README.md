@@ -1,13 +1,15 @@
-<<<<<<< HEAD
 # NexShop — Marketplace Multi-Vendor Premium
 
 > Plataforma de e-commerce full-stack construida para demostrar dominio a nivel de producción del **TALL Stack** — con interfaz glassmórfica, interactividad en tiempo real, seguridad empresarial y un asistente de compras con Inteligencia Artificial integrada.
 
-![Stack](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat-square&logo=laravel)
-![Livewire](https://img.shields.io/badge/Livewire-3.x-FB70A9?style=flat-square)
-![Filament](https://img.shields.io/badge/Filament-v3-FDAE4B?style=flat-square)
-![Tailwind](https://img.shields.io/badge/TailwindCSS-3.x-38BDF8?style=flat-square&logo=tailwindcss)
-![License](https://img.shields.io/badge/propósito-portafolio-8B5CF6?style=flat-square)
+![Stack](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=flat-square&logo=laravel&logoColor=white)
+![Livewire](https://img.shields.io/badge/Livewire-3.x-FB70A9?style=flat-square&logo=livewire&logoColor=white)
+![Filament](https://img.shields.io/badge/Filament-v3-FDAE4B?style=flat-square&logoColor=white)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-3.x-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)
+![Alpine](https://img.shields.io/badge/Alpine.js-3.x-77C1D2?style=flat-square&logo=alpine.js&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq_API-LLaMA_3-8B5CF6?style=flat-square&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-MySQL-003B57?style=flat-square&logo=sqlite&logoColor=white)
+![Estado](https://img.shields.io/badge/estado-en_desarrollo-22c55e?style=flat-square)
 
 ---
 
@@ -16,8 +18,6 @@
 NexShop comenzó como una estructura de base de datos multi-vendor y fue transformado en una experiencia de e-commerce completa y lista para producción. Cada capa — desde el esquema de base de datos hasta el detalle visual de la interfaz — fue diseñada e implementada como demostración del desarrollo moderno con Laravel.
 
 ---
-=======
->>>>>>> 436ed1017af7f5668ef830f966238b6a33061b81
 
 ## Funcionalidades Destacadas
 
@@ -28,7 +28,7 @@ NexShop comenzó como una estructura de base de datos multi-vendor y fue transfo
 - **NexBot — Asistente IA integrado** — widget de chat impulsado por la API de Groq (LLaMA 3) que responde preguntas sobre productos y vendedores en tiempo real, detectando automáticamente el idioma del usuario (español/inglés)
 
 ### Interactividad en Tiempo Real (Livewire 3)
-- **Búsqueda predictiva** en la barra de navegación — filtra productos al instante con input con debounce, sin recargas de página
+- **Búsqueda predictiva** en la barra de navegación — filtra productos al instante con debounce, sin recargas de página
 - **Carrito dinámico** — el botón "Añadir al carrito" dispara eventos de Livewire que actualizan el contador en tiempo real
 - **Sistema de notificaciones Toast** — feedback visual animado para cada acción del usuario
 
@@ -55,8 +55,8 @@ NexShop comenzó como una estructura de base de datos multi-vendor y fue transfo
 - **20+ seeders** que simulan un marketplace activo con relaciones de datos realistas
 - **Modo Eloquent estricto** configurado para detectar consultas N+1 y fugas de seguridad en desarrollo
 
+---
 
-<<<<<<< HEAD
 ## Stack Tecnológico
 
 | Capa | Tecnología |
@@ -152,6 +152,3 @@ Todas las cuentas usan la contraseña: `password`
 ---
 
 *Desarrollado como portafolio técnico. Cada línea de código escrita con la intención de demostrar pensamiento real a nivel de producción.*
-=======
-
->>>>>>> 436ed1017af7f5668ef830f966238b6a33061b81
