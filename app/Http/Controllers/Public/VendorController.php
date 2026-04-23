@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class VendorController extends Controller
 {
+    public function index()
+    {
+        $vendors = Vendor::with('user')->paginate(12);
+        return view('vendors.index', compact('vendors'));
+    }
+
     public function show(Vendor $vendor)
     {
         $vendor->load('user');

@@ -5,10 +5,15 @@
 @section('styles')
     <style>
         .hero-banner {
-            background-image: linear-gradient(to bottom, rgba(15, 17, 21, 0.4), #0f1115), url('/images/ecommerce_hero_banner.png');
-            background-size: cover;
-            background-position: center;
-        }
+    background-image: 
+        linear-gradient(to bottom, rgba(15, 17, 21, 0.35), #0f1115), 
+        url('/images/ecommerce_hero_banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateZ(0); /* GPU layer para compositing */
+    filter: contrast(1.05) saturate(1.1);
+}
     </style>
 @endsection
 
@@ -33,7 +38,7 @@
                         <a href="#products" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-base font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 shadow-lg shadow-purple-600/30 transition-all hover:scale-105">
                             Start Exploring
                         </a>
-                        <a href="#" class="inline-flex justify-center items-center px-8 py-4 border border-gray-600 text-base font-medium rounded-full text-white bg-transparent hover:bg-white/5 transition-all">
+                        <a href="{{ route('register') }}" class="inline-flex justify-center items-center px-8 py-4 border border-gray-600 text-base font-medium rounded-full text-white bg-transparent hover:bg-white/5 transition-all">
                             Become a Vendor
                         </a>
                     </div>
@@ -79,14 +84,14 @@
                     <h2 class="text-3xl font-bold mb-2">Browse by Category</h2>
                     <p class="text-gray-400">Find exactly what you're looking for</p>
                 </div>
-                <a href="#" class="text-purple-400 hover:text-purple-300 font-medium pb-1 flex items-center gap-1 group">
+                <a href="/product-categories" class="text-purple-400 hover:text-purple-300 font-medium pb-1 flex items-center gap-1 group">
                     View All <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 @forelse($categories as $category)
-                <a href="#" class="glass-card rounded-2xl p-6 text-center group">
+                <a href="{{ route('product-categories.show', $category) }}" class="glass-card rounded-2xl p-6 text-center group">
                     <div class="w-14 h-14 mx-auto bg-gray-800 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform group-hover:bg-purple-600/20">
                         <svg class="w-6 h-6 text-gray-400 group-hover:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                     </div>
@@ -116,8 +121,10 @@
                         </div>
                         
                         <div class="absolute top-4 left-4">
-                            @if($product->status === 'active')
+                            @if($product->quantity > 0)
                             <span class="bg-green-500/20 text-green-400 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md border border-green-500/20">IN STOCK</span>
+                            @else
+                            <span class="bg-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md border border-red-500/20">OUT OF STOCK</span>
                             @endif
                         </div>
                         <button class="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white backdrop-blur-md hover:bg-purple-600 transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0">
@@ -125,7 +132,9 @@
                         </button>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <div class="text-xs text-purple-400 font-medium mb-2">{{ $product->vendor->name ?? 'NexShop Partner' }}</div>
+                        <div class="text-xs text-purple-400 font-medium mb-2">
+                             <a href="{{ route('vendors.show', $product->vendor) }}" class="hover:text-purple-300 transition-colors">{{ $product->vendor->name ?? 'NexShop Partner' }}</a>
+                        </div>
                         <h3 class="text-lg font-bold mb-2 line-clamp-1 group-hover:text-purple-400 transition-colors" title="{{ $product->name }}">
                             <a href="/products/{{ $product->id }}">{{ $product->name }}</a>
                         </h3>
@@ -160,7 +169,7 @@
                 <div class="lg:pr-12">
                     <h2 class="text-4xl font-bold mb-6">Top Rated <br><span class="text-purple-400">Vendors</span></h2>
                     <p class="text-gray-400 mb-8 leading-relaxed">Shop directly from the highest-rated independent sellers and boutique brands. Quality guaranteed.</p>
-                    <a href="#" class="inline-flex items-center text-white font-medium hover:text-purple-400 transition-colors group">
+                    <a href="{{ route('vendors.index') }}" class="inline-flex items-center text-white font-medium hover:text-purple-400 transition-colors group">
                         Explore Vendors Directory 
                         <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
@@ -168,7 +177,7 @@
                 
                 <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
                     @forelse($vendors as $vendor)
-                    <div class="glass-card p-6 rounded-2xl flex items-center gap-6 group hover:bg-white/5 cursor-pointer">
+                    <a href="{{ route('vendors.show', $vendor) }}" class="glass-card p-6 rounded-2xl flex items-center gap-6 group hover:bg-white/5 cursor-pointer">
                         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-800 flex-shrink-0 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform shadow-lg">
                             {{ substr($vendor->name, 0, 1) }}
                         </div>
@@ -179,7 +188,7 @@
                             </div>
                             <span class="text-xs text-gray-400">{{ $vendor->email }}</span>
                         </div>
-                    </div>
+                    </a>
                     @empty
                     @endforelse
                 </div>

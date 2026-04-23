@@ -11,11 +11,17 @@ Route::get('products', [ProductController::class, 'index']); // List all product
 Route::get('products/{product}', [ProductController::class, 'show']); // Show product details
 
 // Categories
-Route::get('product-categories', [ProductCategoryController::class, 'index']); // List all categories
-Route::get('product-categories/{category}', [ProductCategoryController::class, 'show']); // Show category products
+Route::get('product-categories', [ProductCategoryController::class, 'index'])->name('product-categories.index');
+Route::get('product-categories/{category}', [ProductCategoryController::class, 'show'])->name('product-categories.show');
 
 // Vendor Information
-Route::get('vendors/{vendor}', [VendorController::class, 'show']); // Show vendor details
+Route::get('vendors', [VendorController::class, 'index'])->name('vendors.index');
+Route::get('vendors/{vendor}', [VendorController::class, 'show'])->name('vendors.show');
 
 // Reviews
 Route::get('products/{product}/reviews', [ReviewController::class, 'index']); // List product reviews
+
+// Static Pages
+Route::view('affiliate', 'pages.affiliate')->name('pages.affiliate');
+Route::view('privacy-policy', 'pages.privacy')->name('pages.privacy');
+Route::view('terms-of-service', 'pages.terms')->name('pages.terms');

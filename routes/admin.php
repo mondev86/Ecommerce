@@ -1,15 +1,15 @@
 <?php
 
 // Admin Routes
-use App\Http\Controllers\RefundController;
+use App\Http\Controllers\Admin\RefundController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\OrderStatusController;
-use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\OrderStatusController;
+
 use App\Http\Controllers\Admin\ReturnController;
-use App\Http\Controllers\ReturnStatusController;
-use App\Http\Controllers\RefundStatusController;
+use App\Http\Controllers\Admin\ReturnStatusController;
+use App\Http\Controllers\Admin\RefundStatusController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\ProductController;
@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\EmailCampaignStatusController;
 
-Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     // User Management
     Route::resource('users', UserController::class)->except(['show']); // Admin user management
 
@@ -33,8 +33,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::resource('roles', RoleController::class)->except(['show']);
     Route::resource('permissions', PermissionController::class)->except(['show']);
 
-    // Vendor Management
-    Route::resource('vendors', VendorController::class);
+    // Vendor Management is handled by Filament (app/Filament/Resources/Vendors/)
 
     // Product Management
     Route::resource('products', ProductController::class)->except('show');

@@ -14,13 +14,18 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'status',
+        'status_id',
         'total_amount',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(OrderStatus::class, 'status_id');
     }
 
     public function items(): \Illuminate\Database\Eloquent\Relations\HasMany

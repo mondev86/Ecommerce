@@ -26,6 +26,7 @@ class DashboardController extends Controller
 
         // Recent Purchases
         $recentOrders = Order::where('user_id', $user->id)
+            ->with('status')
             ->latest()
             ->take(4)
             ->get();

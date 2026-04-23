@@ -11,6 +11,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::where('user_id', Auth::user()->id)
+            ->with(['status'])
             ->withCount('items')
             ->latest()
             ->paginate(10);
@@ -24,7 +25,7 @@ class OrderController extends Controller
             abort(403);
         }
 
-        $order->load(['items.product.vendor']);
+        $order->load(['status', 'items.product.vendor']);
 
         return view('orders.show', compact('order'));
     }

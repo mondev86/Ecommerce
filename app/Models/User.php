@@ -85,6 +85,8 @@ class User extends Authenticatable
     public function hasRole(string|array $roles): bool
     {
         $this->loadMissing('role');
-        return in_array($this->role?->name, (array) $roles);
+        $roleName = strtolower($this->role?->name ?? '');
+        $roles = array_map('strtolower', (array) $roles);
+        return in_array($roleName, $roles);
     }
 }

@@ -80,7 +80,7 @@
                             </div>
                             <div class="text-right">
                                 <p class="text-white font-mono font-bold">${{ number_format($order->total_amount, 2) }}</p>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-{{ $order->status === 'delivered' ? 'green' : ($order->status === 'pending' ? 'yellow' : 'blue') }}-500/20 text-{{ $order->status === 'delivered' ? 'green' : ($order->status === 'pending' ? 'yellow' : 'blue') }}-400 font-bold uppercase">{{ ucfirst($order->status) }}</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-{{ str_contains(strtolower($order->status->name), 'delivered') ? 'green' : (str_contains(strtolower($order->status->name), 'pending') ? 'yellow' : 'blue') }}-500/20 text-{{ str_contains(strtolower($order->status->name), 'delivered') ? 'green' : (str_contains(strtolower($order->status->name), 'pending') ? 'yellow' : 'blue') }}-400 font-bold uppercase">{{ $order->status->name }}</span>
                             </div>
                         </div>
                         @empty
