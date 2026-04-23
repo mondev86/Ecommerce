@@ -364,7 +364,6 @@
     <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.4) 0%,transparent 70%);animation:nexGlowPulse 2s ease-in-out infinite;"></div>
 
     <!-- Badge de notificación -->
-    <div id="nex-badge" style="position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#22c55e;border-radius:50%;border:none;animation:nexBadgePop 1.5s ease-in-out infinite;z-index:2;"></div>
     <svg id="nex-icon-chat" width="24" height="24" fill="none" stroke="white" viewBox="0 0 24 24" style="position:relative;z-index:1;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
     <svg id="nex-icon-close" width="22" height="22" fill="none" stroke="white" viewBox="0 0 24 24" style="display:none;position:relative;z-index:1;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
 </button>
