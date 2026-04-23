@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NexShop — Marketplace Multi-Vendor Premium
 
 > Plataforma de e-commerce full-stack construida para demostrar dominio a nivel de producción del **TALL Stack** — con interfaz glassmórfica, interactividad en tiempo real, seguridad empresarial y un asistente de compras con Inteligencia Artificial integrada.
@@ -15,6 +16,8 @@
 NexShop comenzó como una estructura de base de datos multi-vendor y fue transformado en una experiencia de e-commerce completa y lista para producción. Cada capa — desde el esquema de base de datos hasta el detalle visual de la interfaz — fue diseñada e implementada como demostración del desarrollo moderno con Laravel.
 
 ---
+=======
+>>>>>>> 436ed1017af7f5668ef830f966238b6a33061b81
 
 ## Funcionalidades Destacadas
 
@@ -52,8 +55,8 @@ NexShop comenzó como una estructura de base de datos multi-vendor y fue transfo
 - **20+ seeders** que simulan un marketplace activo con relaciones de datos realistas
 - **Modo Eloquent estricto** configurado para detectar consultas N+1 y fugas de seguridad en desarrollo
 
----
 
+<<<<<<< HEAD
 ## Stack Tecnológico
 
 | Capa | Tecnología |
@@ -149,3 +152,6 @@ Todas las cuentas usan la contraseña: `password`
 ---
 
 *Desarrollado como portafolio técnico. Cada línea de código escrita con la intención de demostrar pensamiento real a nivel de producción.*
+=======
+
+>>>>>>> 436ed1017af7f5668ef830f966238b6a33061b81
